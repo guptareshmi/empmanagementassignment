@@ -1,0 +1,81 @@
+<h2>Employees</h2>
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Employee Form</h4>
+      
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="addForm" (ngSubmit)="addUser()">
+        <div class="form-group col-5">
+            <label>Employee Id</label>
+            <input type="number" class="form-control" formControlName="empId" placeholder="Enter Employee ID">
+        </div>
+        
+        <div class="form-group col-5">
+            <label>First Name</label>
+            <input type="text" class="form-control" formControlName="fname" placeholder="Enter First Name">
+            <label>Last Name</label>
+            <input type="text" class="form-control" formControlName="lname" placeholder="Enter Last Name">          
+        </div>
+
+        <div class="form-group col-10">
+            <label>Email</label>
+            <input type="email" class="form-control" formControlName="emailId"  placeholder="Enter Email Id"/>
+        </div>
+        
+        <div class="form-group col-10">
+            <label>Department</label>
+            <select class="form-control" formControlName="dept" >
+            <option value="" disabled>--Select Department--</option>
+            <option value="Developer">Developer</option>
+            <option value="Digital Marketing">Digital Marketing</option>
+            <option value="Design">Design</option>
+            </select>
+            
+        </div>
+    
+    
+        <div class="row ml-2">
+        <div class="form-group text-center">
+            <button type="submit" class="btn btn-success ml-2" >Submit</button>
+            <button type="button" class="btn btn-danger ml-2">Cancel</button>
+        </div>
+        </div>
+    </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="bsModalRef.hide()">Close</button>
+    </div>
+  </ng-template>
+<button type="button" class="btn btn-primary btn-floating addEmployeebtn" (click)="openLoginModal(content)">
+    <i class="fa fa-plus"></i> 
+</button>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Name<i class="fa fa-caret-down"></i></th>
+            <th scope="col">Emp ID<i class="fa fa-caret-down"></i></th>
+            <th scope="col">Age<i class="fa fa-caret-down"></i></th>
+            <th scope="col">Email<i class="fa fa-caret-down"></i></th>
+            <th scope="col">Phone<i class="fa fa-caret-down"></i></th>
+            <th scope="col">Team<i class="fa fa-caret-down"></i></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let emp of employeeData?.data">
+            <td> <img src="../../assets/icon-1.JPG" alt="image" style="height: 50px;width: 50px;border-radius: 50%;">&nbsp;{{emp.fname}}{{emp.lname}}</td>
+            <td>{{emp.empId}}</td>
+            <td>{{emp.dob | age}}</td>
+            <td>{{emp.emailId}}</td>
+            <td>9786798878</td>
+            <td>
+                {{emp.dept}}&nbsp;&nbsp;
+            </td>
+            <td>
+                <i class="fa fa-edit" (click)="edit(emp.empId)"></i>&nbsp;
+                <i class="fa fa-trash" (click)="delete(emp.empId)"></i>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,10 @@
+.addEmployeebtn {
+    position: fixed;
+    right: 100px;
+    bottom: 60px;
+    border-radius: 50%;
+}
+
+i{
+    cursor: pointer;
+}
